@@ -1,0 +1,5 @@
+StatusKey,StatusCode,Description
+1,Undergraduate,Applicant with B.S. degree
+2,Graduate,MD student
+3,Resident,Residency
+4,Fellow,Fellowship
