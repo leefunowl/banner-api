@@ -27,20 +27,20 @@ const {
   Master,
   Status,
   Sex,
-  User,
-  Role,
+  user,
+  role,
   sequelize,
 } = require("./init-models")(sequelizeBanner)
 
 // var bannerOrm = require("./init-models")(sequelizeBanner)
 
 // define relationships of ORMs
-Role.belongsToMany(User, {
+role.belongsToMany(user, {
   through: "USER_ROLE",
   foreignKey: "ID",
   otherKey: "ID"
 })
-User.belongsToMany(Role, {
+user.belongsToMany(role, {
   through: "USER_ROLE",
   foreignKey: "ID",
   otherKey: "ID"
@@ -55,8 +55,8 @@ const db = {
   Master,
   Status,
   Sex,
-  User,
-  Role,
+  user,
+  role,
 
   ROLES : ["user", "admin", "moderator"]
 }

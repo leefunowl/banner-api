@@ -6,12 +6,14 @@ var config = require('./config')
 
 const app = express();
 
-app.use(cors(config.corsOptions))
+// app.use(cors(config.corsOptions))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.get("/", (req, res) => {
-  res.status(200).send("Hello World!");
+  res.status(200).send({ value:"Hello World!" });
 });
+
+require('./app/routes/auth')(app)
 
 module.exports = app;
