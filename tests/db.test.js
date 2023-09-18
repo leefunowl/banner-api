@@ -8,7 +8,7 @@ describe("Test DB initialization", () => {
 
   test("There should be 6 tables after DB initialization", async () => {
 
-    await db.sequelize.sync({
+    await db.sequelizeBanner.sync({
       force: true
     });
     // await db.user.create({

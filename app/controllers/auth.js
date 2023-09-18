@@ -1,11 +1,11 @@
 var jwt = require("jsonwebtoken")
 var bcrypt = require("bcryptjs")
-
+//------
 const db = require("../models")
-var config = require('../../config')
-
-const User = db.User
-const Role = db.Role
+var c = require('../../config')
+//------
+const User = db.user
+const Role = db.role
 
 exports.signin = (req, res) => {
   User.findOne({
@@ -34,8 +34,8 @@ exports.signin = (req, res) => {
       }
 
       // if username and password match, assign token and roles
-      var token = jwt.sign({ id: user.id }, config.lsd_jwt_key, {
-        expiresIn: config.TokenExpireTime
+      var token = jwt.sign({ id: user.id }, c.lsd_jwt_key, {
+        expiresIn: c.TokenExpireTime
       })
 
       var authorities = []

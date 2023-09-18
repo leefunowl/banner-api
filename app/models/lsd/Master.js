@@ -1,16 +1,17 @@
+const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('MASTER', {
-    MASTER_ID: {
+  return sequelize.define('Master', {
+    Mastkey: {
       autoIncrement: true,
       type: DataTypes.BIGINT,
       allowNull: false,
       primaryKey: true
     },
-    LAST_NAME: {
+    Lname: {
       type: DataTypes.TEXT,
       allowNull: true
     },
-    FIRST_NAME: {
+    Fname: {
       type: DataTypes.TEXT,
       allowNull: true
     },
@@ -18,31 +19,29 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.TEXT,
       allowNull: true
     },
-    GENDER: {
+    Gender: {
       type: DataTypes.INTEGER,
       allowNull: true
     },
-    DOB: {
-      type: DataTypes.DATE,
-      allowNull: true
-    },
-    STATUS: {
+    Status: {
       type: DataTypes.STRING(5),
       allowNull: true
     },
-  }, {
-    sequelize,
-    tableName: 'MASTER',
-    timestamps: false,
-    indexes: [
-      {
-        name: "MASTER_PRIMARY",
-        unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "MASTER_ID" },
-        ]
-      },
-    ]
-  });
+  },
+  // {
+  //   sequelize,
+  //   tableName: 'Master',
+  //   timestamps: false,
+  //   indexes: [
+  //     {
+  //       name: "PRIMARY_Master",
+  //       unique: true,
+  //       using: "BTREE",
+  //       fields: [
+  //         { name: "Mastkey" },
+  //       ]
+  //     },
+  //   ]
+  // }
+  );
 };

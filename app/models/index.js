@@ -1,6 +1,7 @@
 const Sequelize = require("sequelize")
+//------
 const config = require("../../config")
-
+//------
 // db uris
 const dbUri = config.dbUri
 const sequelizeBanner = new Sequelize(
@@ -23,40 +24,39 @@ const sequelizeBanner = new Sequelize(
 )
 
 // get ORMs
-const {
-  Master,
-  Status,
-  Sex,
-  user,
-  role,
-  sequelize,
-} = require("./init-models")(sequelizeBanner)
-
-// var bannerOrm = require("./init-models")(sequelizeBanner)
+// var lsd = require("../models/lsd/init-models")(sequelizeBanner)
+// var lsd_2ry = require("../models/lsd_2ry/init-models")(sequelizeBanner)
+var user = require("../models/user.js")(sequelizeBanner, Sequelize)
+var role = require("../models/role.js")(sequelizeBanner, Sequelize)
 
 // define relationships of ORMs
+// lsd_2ry.Organizations.hasMany(lsd.AcademicProgress, {
+//   foreignKey: 'InstitutionKey'
+// })
+// lsd.AcademicProgress.belongsTo(lsd_2ry.Organizations, {
+//   foreignKey: 'InstitutionKey'
+// })
+
 role.belongsToMany(user, {
-  through: "USER_ROLE",
-  foreignKey: "ID",
-  otherKey: "ID"
+  through: "user_roles",
+  foreignKey: "roleId",
+  otherKey: "userId"
 })
 user.belongsToMany(role, {
-  through: "USER_ROLE",
-  foreignKey: "ID",
-  otherKey: "ID"
+  through: "user_roles",
+  foreignKey: "userId",
+  otherKey: "roleId"
 })
 
 // packing ORMs and other db utilities into "db" object
 const db = {
   Sequelize,
   sequelizeBanner,
-  sequelize,
 
-  Master,
-  Status,
-  Sex,
   user,
   role,
+  // lsd,
+  // lsd_2ry,
 
   ROLES : ["user", "admin", "moderator"]
 }
